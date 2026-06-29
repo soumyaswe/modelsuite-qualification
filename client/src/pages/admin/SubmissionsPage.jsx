@@ -74,17 +74,17 @@ const SubmissionsPage = () => {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse text-sm">
+              <table className="w-full border-collapse text-sm"  style={{ tableLayout: 'fixed' }}>
                 <thead>
                   <tr className="bg-bg-surface">
-                    <th className={thCls}>Task</th>
-                    <th className={thCls}>Talent</th>
-                    <th className={thCls}>Notes</th>
-                    <th className={thCls}>File</th>
+                    <th className={thCls} style={{ width: '20%' }}>Task</th>
+                    <th className={thCls} style={{ width: '15%' }}>Talent</th>
+                    <th className={thCls} style={{ width: '25%' }}>Notes</th>
+                    <th className={thCls} style={{ width: '8%' }}>File</th>
                     
-                    <th className={thCls}>Submitted</th>
-                    <th className={thCls}>Review Status</th>
-                    <th className={thCls}>Actions</th>
+                    <th className={thCls} style={{ width: '12%' }}>Submitted</th>
+                    <th className={thCls} style={{ width: '12%' }}>Review Status</th>
+                    <th className={thCls} style={{ width: '8%' }}>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -92,8 +92,8 @@ const SubmissionsPage = () => {
                     <tr key={sub._id} className="border-b border-border last:border-0 hover:bg-bg-hover transition-colors">
 
                       {/* Task */}
-                      <td className={`${tdCls} max-w-[180px]`}>
-                        <span className="block font-medium text-text-primary truncate">
+                      <td className={tdCls} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <span className="block font-medium text-text-primary truncate" title={sub.taskId?.title || ''}>
                           {sub.taskId?.title || '—'}
                         </span>
                       </td>
@@ -104,14 +104,14 @@ const SubmissionsPage = () => {
                           <div className="w-[26px] h-[26px] rounded-full avatar-talent flex items-center justify-center text-[11px] font-bold text-white shrink-0">
                             {sub.talentId?.name?.[0] ?? '?'}
                           </div>
-                          <span className="text-text-primary">{sub.talentId?.name || '—'}</span>
+                          <span className="text-text-primary"  title={sub.taskId?.title || ''}>{sub.talentId?.name || '—'}</span>
                         </div>
                       </td>
 
-                      {/* Notes — truncated, no tooltip */}
+                      {/* Notes — truncated with no tooltip */}
                       
-                      <td className={`${tdCls} max-w-[200px]`}>
-                        <span className="block text-text-muted truncate text-[13px]">
+                      <td className={tdCls} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <span className="block text-text-muted truncate text-[13px]"  title={sub.notes || ''}>
                           {sub.notes || <span className="italic text-text-faint">No notes</span>}
                         </span>
                       </td>
