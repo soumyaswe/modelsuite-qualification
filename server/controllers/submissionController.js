@@ -1,4 +1,4 @@
-﻿const Submission = require('../models/Submission');
+const Submission = require('../models/Submission');
 const Task = require('../models/Task');
 
 // @desc  Submit a task with a file upload
@@ -105,4 +105,19 @@ const reviewSubmission = async (req, res) => {
   }
 };
 
-module.exports = { submitTask, getSubmission, getAllSubmissions, reviewSubmission };
+// @desc  Get all submissions made by the authenticated talent
+// @route GET /api/submissions/my/history
+// @access Talent (protect)
+const getMySubmissions = async (req, res) => {
+  try {
+    const submissions = await Submission.find({ talentId: req.user._id })
+      .populate('taskId', 'title')
+      .sort({ createdAt: -1 });
+
+    res.json(submissions);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { submitTask, getSubmission, getAllSubmissions, reviewSubmission, getMySubmissions };

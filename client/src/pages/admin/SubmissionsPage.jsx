@@ -79,11 +79,11 @@ const SubmissionsPage = () => {
                   <tr className="bg-bg-surface">
                     <th className={thCls} style={{ width: '20%' }}>Task</th>
                     <th className={thCls} style={{ width: '15%' }}>Talent</th>
-                    <th className={thCls} style={{ width: '25%' }}>Notes</th>
+                    <th className={thCls} style={{ width: '18%' }}>Notes</th>
                     <th className={thCls} style={{ width: '8%' }}>File</th>
                     
-                    <th className={thCls} style={{ width: '12%' }}>Submitted</th>
-                    <th className={thCls} style={{ width: '12%' }}>Review Status</th>
+                    <th className={thCls} style={{ width: '14%' }}>Submitted</th>
+                    <th className={thCls} style={{ width: '13%' }}>Review Status</th>
                     <th className={thCls} style={{ width: '8%' }}>Actions</th>
                   </tr>
                 </thead>
@@ -129,7 +129,7 @@ const SubmissionsPage = () => {
                       </td>
 
                       {/* Submitted at — raw ISO */}
-                      <td className={`${tdCls} text-text-muted text-[13px] whitespace-nowrap`}>
+                      <td className={`${tdCls} text-text-muted text-[13px]`} title={sub.createdAt || ''} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} >
                         {sub.createdAt}
                       </td>
 
